@@ -26,4 +26,9 @@ public class Todo {
 //    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createAt;
     private LocalDateTime updatedAt;
+
+
+    public void setData(){
+        this.createAt = LocalDateTime.now();
+    }
 }

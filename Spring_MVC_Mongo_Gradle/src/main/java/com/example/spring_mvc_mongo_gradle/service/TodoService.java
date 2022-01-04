@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-
-
 @AllArgsConstructor
 @Service
 public class TodoService {
@@ -19,6 +17,7 @@ public class TodoService {
     private final TodoRepository repository;
 
     public Todo createTodo(Todo todo) {
+        todo.setData();
         return repository.save(todo);
     }
 

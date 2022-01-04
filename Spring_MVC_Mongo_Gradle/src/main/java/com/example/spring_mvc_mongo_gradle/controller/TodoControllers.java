@@ -4,18 +4,14 @@ import com.example.spring_mvc_mongo_gradle.models.Todo;
 import com.example.spring_mvc_mongo_gradle.service.TodoService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
-
 import static org.springframework.http.HttpStatus.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/v1/Todo")
+@RequestMapping("/v1/todo")
 public class TodoControllers {
-
 
     private final TodoService service;
 
@@ -46,19 +42,7 @@ public class TodoControllers {
         return service.editTodo(id, todo);
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(NO_CONTENT)
-    public void deleteTodo(@PathVariable("id") String id){
-         service.deleteTodo(id);
-    }
-
     @DeleteMapping("/")
-    @ResponseStatus(NO_CONTENT)
-    public void deleteAllTodo(){
-        service.deleteAllTodo();
-    }
-
-    @DeleteMapping("/delete3/")
     @ResponseStatus(NO_CONTENT)
     public void delete3Todo(@RequestParam(required = false) List<String> id){
         service.deleteNTodo(id);
