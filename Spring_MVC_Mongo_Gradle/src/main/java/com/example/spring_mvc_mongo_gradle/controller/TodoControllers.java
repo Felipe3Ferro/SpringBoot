@@ -36,15 +36,19 @@ public class TodoControllers {
         return service.getTodo(id,description,completed);
     }
 
-    @PutMapping("/{id}")
-    @ResponseStatus(OK)
-    public Todo editTodo(@PathVariable String id, @RequestBody @Valid Todo todo){
-        return service.editTodo(id, todo);
-    }
-
     @DeleteMapping("/")
     @ResponseStatus(NO_CONTENT)
-    public void delete3Todo(@RequestParam(required = false) List<String> id){
-        service.deleteNTodo(id);
+    public void deleteNTodo(@RequestParam(required = false) List<String> id){
+        if(id != null) {
+            service.deleteNTodo(id);
+        }else{
+            service.deleteNTodo();
+        }
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(NO_CONTENT)
+    public Todo editTodo(@RequestBody @Valid Todo todo, @PathVariable String id){
+        return service.editTodo(id, todo);
     }
 }

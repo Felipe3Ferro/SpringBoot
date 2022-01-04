@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Data // shortcut for @ToString, @EqualsAndHashCode, @Getter on all fields, @Setter (non final filds) @Required Constructor
 @AllArgsConstructor //@AllArgsConstructor gera um construtor com 1 parâmetro para cada campo em sua classe. Os campos marcados com @NonNull resultam em verificações nulas nesses parâmetros.
-@NoArgsConstructor
+//@NoArgsConstructor
 @Document(collection = "todos")
 public class Todo {
     @Id
@@ -24,11 +24,14 @@ public class Todo {
     private Boolean completed;
 //    @NotNull
 //    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createAt;
+    @Builder.Default
+    private LocalDateTime createAt = LocalDateTime.now();
     private LocalDateTime updatedAt;
 
+    public Todo() {
+    }
 
-    public void setData(){
-        this.createAt = LocalDateTime.now();
+    public void setDataUpdate(){
+        this.updatedAt = LocalDateTime.now();
     }
 }
