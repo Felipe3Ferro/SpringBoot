@@ -1,10 +1,12 @@
 package com.example.spring_mvc_mongo_gradle.controller;
 
-import com.example.spring_mvc_mongo_gradle.models.Todo;
-import com.example.spring_mvc_mongo_gradle.service.TodoService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+
+import com.example.spring_mvc_mongo_gradle.models.Todo;
+import com.example.spring_mvc_mongo_gradle.service.TodoService;
+
 import java.util.List;
 import static org.springframework.http.HttpStatus.*;
 

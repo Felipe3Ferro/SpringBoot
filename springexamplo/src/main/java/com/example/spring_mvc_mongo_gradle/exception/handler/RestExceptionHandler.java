@@ -1,11 +1,12 @@
 package com.example.spring_mvc_mongo_gradle.exception.handler;
 
-import com.example.spring_mvc_mongo_gradle.exception.ResourceNotFoundDetails;
-import com.example.spring_mvc_mongo_gradle.exception.notFound.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+
+import com.example.spring_mvc_mongo_gradle.exception.ResourceNotFoundDetails;
+import com.example.spring_mvc_mongo_gradle.exception.notFound.ResourceNotFoundException;
 
 //@ControllerAdvice
 @RestControllerAdvice
