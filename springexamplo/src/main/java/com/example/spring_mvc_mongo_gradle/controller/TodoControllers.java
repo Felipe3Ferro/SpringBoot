@@ -18,24 +18,24 @@ import static org.springframework.http.HttpStatus.*;
 @RequestMapping("/v1/todo")
 public class TodoControllers {
 
-    private final TodoService service;
+    private final TodoService todoService;
 
     @PostMapping
     @ResponseStatus(CREATED)
     public Todo create(@RequestBody @Valid Todo todo) {
-        return service.createTodo(todo);
+        return todoService.createTodo(todo);
     }
 
     @GetMapping
     @ResponseStatus(OK)
     public List<Todo> getTodo() {
-        return service.getTodo();
+        return todoService.getTodo();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public Todo getTodoById(@PathVariable String id) {
-        return service.getTodoById(id);
+        return todoService.getTodoById(id);
     }
 
     @GetMapping("/filter/")
@@ -44,25 +44,27 @@ public class TodoControllers {
             @RequestParam(required = false) String id,
             @RequestParam(required = false) String description,
             @RequestParam(required = false) Boolean completed) {
-        return service.getTodo(id, description, completed);
+        return todoService.getTodo(id, description, completed);
     }
 
     @DeleteMapping
     @ResponseStatus(NO_CONTENT)
     public void deleteNTodo(@RequestParam(required = false) List<String> id) {
         if (id != null) {
-            service.deleteNTodo(id);
+            todoService.deleteNTodo(id);
         } else {
-            service.deleteNTodo();
+            todoService.deleteNTodo();
         }
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT) 
     public Todo editTodo(@RequestBody @Valid Todo todo, @PathVariable String id) {
-        return service.editTodo(id, todo);
+        return todoService.editTodo(id, todo);
     }
 
+    //=== === === === === === === === === === === === === === === === === === === === === === === ===
+    
     @PostMapping("/cookie")
     public void createCookie(){
         ResponseCookie.from("user-id", "123")
@@ -84,4 +86,5 @@ public class TodoControllers {
     public String getheader(@RequestHeader(value = "clientId") String clientId){ //HttpHeaders 
         return clientId;
     }
+   
 }

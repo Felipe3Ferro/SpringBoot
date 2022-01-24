@@ -7,6 +7,7 @@ import com.example.spring_mvc_mongo_gradle.repositories.TodoRepository;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Service
 public class TodoService {
+
 
     private final TodoRepository repository;
     
@@ -64,5 +66,4 @@ public class TodoService {
         return repository.save(todo);
     }
 
-    
-}
+}    
