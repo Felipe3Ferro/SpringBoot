@@ -4,18 +4,24 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "boards")
-public class Boards{
+
+public class Board {
     @NotNull
     private String id;
     @NotNull
     private String name;
     private Boolean closed;
     // private String desc;
-    private ListofBoards list;
-    private Cards cards;
+    private ListofBoard[] list;
 
 }

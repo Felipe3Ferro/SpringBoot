@@ -1,14 +1,13 @@
 package com.example.spring_mvc_mongo_gradle.repositories;
 
-import com.example.spring_mvc_mongo_gradle.models.Todo;
+import com.example.spring_mvc_mongo_gradle.models.Board;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-
-public interface TrelloRepository extends MongoRepository<Todo, String> {
+public interface TrelloRepository extends MongoRepository<Board, String> {
 
     @Override
-    public void delete(Todo todo);
+    public void delete(Board todo);
 
-
-    void findByTodo();
+    // void findByBoard();
 }
