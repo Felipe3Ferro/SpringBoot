@@ -35,4 +35,5 @@ public class RestExceptionHandler {
                 .developerMessage(e.getClass().getName())
                 .build();
     }
+
 }

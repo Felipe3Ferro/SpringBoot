@@ -1,7 +1,5 @@
 package com.example.spring_mvc_mongo_gradle.controller;
 
-import java.util.List;
-
 import com.example.spring_mvc_mongo_gradle.models.Board;
 import com.example.spring_mvc_mongo_gradle.models.Card;
 import com.example.spring_mvc_mongo_gradle.service.TrelloService;

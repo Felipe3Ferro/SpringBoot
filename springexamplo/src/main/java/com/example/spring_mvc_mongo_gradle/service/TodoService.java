@@ -27,12 +27,12 @@ public class TodoService {
     }
 
     public Todo getTodoById(String id) {
-        return repository.findById(id).get();
+        Todo todo = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("ID not found"));
+        return todo;
     }
 
     public List<Todo> getTodo(String id, String description, Boolean completed) {
 
-        // repository.findByTodo(); **
         return repository.findAll().stream().filter(getTodoFiltrado(id, description, completed))
                 .collect(Collectors.toList());
     }

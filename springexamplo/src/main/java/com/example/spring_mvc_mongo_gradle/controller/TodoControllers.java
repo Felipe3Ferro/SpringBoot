@@ -58,33 +58,34 @@ public class TodoControllers {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(NO_CONTENT) 
+    @ResponseStatus(NO_CONTENT)
     public Todo editTodo(@RequestBody @Valid Todo todo, @PathVariable String id) {
         return todoService.editTodo(id, todo);
     }
 
-    //=== === === === === === === === === === === === === === === === === === === === === === === ===
-    
+    // === === === === === === === === === === === === === === === === === === ===
+    // === === === === ===
+
     @PostMapping("/cookie")
-    public void createCookie(){
+    public void createCookie() {
         ResponseCookie.from("user-id", "123")
-            .httpOnly(true)
-            .secure(true)
-            .path("/")
-            .maxAge(60)
-            .domain("example.com")
-            .build();
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(60)
+                .domain("example.com")
+                .build();
     }
 
     @GetMapping("/cookie")
     public String readCookie(
-        @CookieValue(name = "user-id", defaultValue = "123") String userId) {
+            @CookieValue(name = "user-id", defaultValue = "123") String userId) {
         return userId;
     }
 
     @GetMapping("header")
-    public String getheader(@RequestHeader(value = "clientId") String clientId){ //HttpHeaders 
+    public String getheader(@RequestHeader(value = "clientId") String clientId) { // HttpHeaders
         return clientId;
     }
-   
+
 }
