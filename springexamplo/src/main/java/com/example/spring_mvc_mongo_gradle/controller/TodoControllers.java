@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/v1/todo")
+@RequestMapping(value = "/v1/todo")
 public class TodoControllers {
 
     private final TodoService todoService;

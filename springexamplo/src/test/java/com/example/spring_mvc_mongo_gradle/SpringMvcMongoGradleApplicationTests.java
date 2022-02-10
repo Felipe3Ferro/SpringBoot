@@ -8,7 +8,6 @@ class SpringMvcMongoGradleApplicationTests {
 
     @Test
     public void test() {
-        System.out.println("oiiiiii");
     }
 
 }
