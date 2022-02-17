@@ -2,8 +2,11 @@ package com.example.spring_mvc_mongo_gradle.controller;
 
 import lombok.AllArgsConstructor;
 
+
 import org.springframework.http.ResponseCookie;
 import org.springframework.web.bind.annotation.*;
+
+import io.swagger.v3.oas.annotations.Operation;
 
 import javax.validation.Valid;
 
@@ -20,6 +23,7 @@ public class TodoControllers {
 
     private final TodoService todoService;
 
+    @Operation(summary = "Cria um Todo e salva no Mongo")
     @PostMapping
     @ResponseStatus(CREATED)
     public Todo create(@RequestBody @Valid Todo todo) {
