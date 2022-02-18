@@ -7,6 +7,9 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import javax.validation.Valid;
 
@@ -21,39 +24,67 @@ import static org.springframework.http.HttpStatus.*;
 @RequestMapping(value = "/v1/todo")
 public class TodoControllers {
 
+
     private final TodoService todoService;
 
-    @Operation(summary = "Cria um Todo e salva no Mongo")
+
+    @Operation(summary = "Cria um Todo e salva no Mongo", description = "Cria um Todo e salva no Mongo", tags = {"Todo"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Todo criado com sucesso")
+    })
     @PostMapping
     @ResponseStatus(CREATED)
-    public Todo create(@RequestBody @Valid Todo todo) {
+    public Todo create(@Parameter(description = "Passa por corpo o Todo", required = true) @RequestBody @Valid Todo todo) {
         return todoService.createTodo(todo);
     }
 
+
+    @Operation(summary = "Retorna lista de Todos existentes", description = "Retorna lista de Todos existentes", tags = {"Todo"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Retornou a lista com sucesso")
+    })
     @GetMapping
     @ResponseStatus(OK)
     public List<Todo> getTodo() {
         return todoService.getTodo();
     }
 
+
+    @Operation(summary = "Retorna um Todo apartir do ID", description = "Retorna um Todo apartir do ID", tags = {"Todo"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Retornou o todo com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Não pode encontrar o Todo indicado")
+    })
     @GetMapping("/{id}")
     @ResponseStatus(OK)
-    public Todo getTodoById(@PathVariable String id) {
+    public Todo getTodoById(@Parameter(description = "Id do Todo a ser pesquisado", required = true) @PathVariable String id) {
         return todoService.getTodoById(id);
     }
 
+
+    @Operation(summary = "Retorna um Todo apartir dos filtros ", description = "Retorna um Todo apartir dos filtros", tags = {"Todo"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Retornou o todo com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Não pode encontrar o Todo indicado")
+    })
     @GetMapping("/filter/")
     @ResponseStatus(OK)
     public List<Todo> getTodoFiltrado(
-            @RequestParam(required = false) String id,
-            @RequestParam(required = false) String description,
-            @RequestParam(required = false) Boolean completed) {
+        @Parameter(description = "Id do Todo a ser pesquisado", required = false) @RequestParam(required = false) String id,
+        @Parameter(description = "Descrição do Todo a ser pesquisado", required = false) @RequestParam(required = false) String description,
+        @Parameter(description = "Estado do Completed do Todo a ser pesquisado", required = false) @RequestParam(required = false) Boolean completed) {
         return todoService.getTodo(id, description, completed);
     }
 
+
+    @Operation(summary = "Deleta uma lista de Todo, ou todo Todos", description = "Deleta uma lista de Todo, ou todo Todos", tags = {"Todo"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Deletado com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Todo não encontrado")
+    })
     @DeleteMapping
     @ResponseStatus(NO_CONTENT)
-    public void deleteNTodo(@RequestParam(required = false) List<String> id) {
+    public void deleteNTodo(@Parameter(description = "Id dos Todos a serem deletados", required = false) @RequestParam(required = false) List<String> id) {
         if (id != null) {
             todoService.deleteNTodo(id);
         } else {
@@ -61,9 +92,15 @@ public class TodoControllers {
         }
     }
 
+
+    @Operation(summary = "Altera um Todo", description = "Altera um Todo", tags = {"Todo"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Alterado com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Todo não encontrado")
+    })
     @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
-    public Todo editTodo(@RequestBody @Valid Todo todo, @PathVariable String id) {
+    public Todo editTodo(@Parameter(description = "Corpo do novo Todo", required = true) @RequestBody @Valid Todo todo, @Parameter(description = "Id do Todo a ser alterado", required = true) @PathVariable String id) {
         return todoService.editTodo(id, todo);
     }
 
