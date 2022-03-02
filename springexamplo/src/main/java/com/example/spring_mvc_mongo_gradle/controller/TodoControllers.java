@@ -107,26 +107,27 @@ public class TodoControllers {
     // === === === === === === === === === === === === === === === === === === ===
     // === === === === ===
 
-    @PostMapping("/cookie")
-    public void createCookie() {
-        ResponseCookie.from("user-id", "123")
-                .httpOnly(true)
-                .secure(true)
-                .path("/")
-                .maxAge(60)
-                .domain("example.com")
-                .build();
-    }
+    // @PostMapping("/cookie")
+    // public void createCookie() {
+    //     ResponseCookie.from("user-id", "123")
+    //             .httpOnly(true)
+    //             .secure(true)
+    //             .path("/")
+    //             .maxAge(60)
+    //             .domain("example.com")
+    //             .build();
+    // }
 
-    @GetMapping("/cookie")
-    public String readCookie(
-            @CookieValue(name = "user-id", defaultValue = "123") String userId) {
-        return userId;
-    }
+    // @GetMapping("/cookie")
+    // public String readCookie(
+    //         @CookieValue(name = "user-id", defaultValue = "123") String userId) {
+    //     return userId;
+        
+    // }
 
-    @GetMapping("header")
-    public String getheader(@RequestHeader(value = "clientId") String clientId) { // HttpHeaders
-        return clientId;
-    }
+    // @GetMapping("header")
+    // public String getheader(@RequestHeader(value = "clientId") String clientId) { // HttpHeaders
+    //     return clientId;
+    // }
 
 }
