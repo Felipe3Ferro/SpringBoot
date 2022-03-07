@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -22,6 +24,6 @@ public class Board {
     private String name;
     private Boolean closed;
     // private String desc;
-    private ListofBoard[] list;
+    private List<ListofBoard> list;
 
 }

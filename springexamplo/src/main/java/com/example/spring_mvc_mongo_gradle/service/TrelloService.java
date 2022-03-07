@@ -12,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -49,33 +50,7 @@ public class TrelloService {
 
 
 
-//	public ListofBoard[] getListFromABoardById(String id) {
-//		// https://api.trello.com/1/boards/61eb148bf61d443d512751de/lists
-//
-//		UriComponents uri = UriComponentsBuilder.newInstance()
-//				.scheme("https")
-//				.host("api.trello.com")
-//				.path("1/boards/")
-//				.path(id + "/lists")
-//				.queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
-//				.queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3").build();
-//
-//		var response = template.getForObject(uri.toString(), ListofBoard[].class);
-//
-//		List<ListofBoard> listofBoards = Arrays.stream(response).collect(Collectors.toList());
-//
-//		for (int i = 0; i < listofBoards.s; i++) {
-//			listofBoards[i].setCards(getCardsFromListById(listofBoards[i].getId()));
-//		}
-//
-//		var list = listofBoards.stream().map((ListofBoard board) -> getCardsFromListById(board.getId())).collect(Collectors.toList());
-//
-
-
-
-
-
-		public ListofBoard[] getListFromABoardById(String id) {
+	public List<ListofBoard> getListFromABoardById(String id) {
 		// https://api.trello.com/1/boards/61eb148bf61d443d512751de/lists
 
 		UriComponents uri = UriComponentsBuilder.newInstance()
@@ -86,17 +61,21 @@ public class TrelloService {
 				.queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
 				.queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3").build();
 
-		ListofBoard[] listofBoards = template.getForObject(uri.toString(), ListofBoard[].class);
+		var response = template.getForObject(uri.toString(), ListofBoard[].class);
+
+		List<ListofBoard> listofBoards = Arrays.stream(response).collect(Collectors.toList());
 
 
-		for (int i = 0; i < listofBoards.length; i++) {
-			listofBoards[i].setCards(getCardsFromListById(listofBoards[i].getId()));
-		}
+		listofBoards.stream().forEach((ListofBoard board) -> {
+			board.setCards(getCardsFromListById(board.getId()))
+			;}
+		);
 
 		return listofBoards;
 	}
 
-	public Card[] getCardsFromListById(String id) {
+
+	public List<Card> getCardsFromListById(String id) {
 
 		// https://api.trello.com/1/lists/61f15dfcc7b3c971222b035d/cards
 
@@ -108,7 +87,10 @@ public class TrelloService {
 				.queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
 				.queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3").build();
 
-		Card[] cards = template.getForObject(uri.toString(), Card[].class);
+
+		var response = template.getForObject(uri.toString(), Card[].class);
+
+		List<Card> cards = Arrays.stream(response).collect(Collectors.toList());
 
 		return cards;
 	}
@@ -125,9 +107,10 @@ public class TrelloService {
 
 		Card aux = template.postForObject(uri.toString(), card, Card.class);
 
-		ListofBoard[] list = repository.findById(boardId).get().getList();
+		var list  = repository.findById(boardId).get().getList();
 
-		Card cards[] = {aux};
+		List<Card> cards = new ArrayList<>();
+		cards.add(aux);
 
 		for (ListofBoard listofBoard : list) {
 			if (listofBoard.getId().equals(listofBoardId)) {
