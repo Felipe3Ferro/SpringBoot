@@ -2,8 +2,8 @@ package com.example.spring_mvc_mongo_gradle.controller;
 
 import java.util.List;
 
-import com.example.spring_mvc_mongo_gradle.models.Board;
-import com.example.spring_mvc_mongo_gradle.models.Card;
+import com.example.spring_mvc_mongo_gradle.models.trello.dto.BoardDTO;
+import com.example.spring_mvc_mongo_gradle.models.trello.response.Board;
 import com.example.spring_mvc_mongo_gradle.service.TrelloService;
 
 import lombok.AllArgsConstructor;
@@ -23,28 +23,28 @@ public class TrelloConrtoller {
     // }
 
     @GetMapping("/board")
-    public List<Board> getBoard() {
+    public List<BoardDTO> getBoard() {
         return trelloService.getBoard();
     }
 
-    @PostMapping("/board")
-    public Board createBoard(@RequestBody Board board) {
-        return trelloService.createBoard(board);
-    }
+//    @PostMapping("/board")
+//    public Board createBoard(@RequestBody Board board) {
+//        return trelloService.createBoard(board);
+//    }
 
-    @PostMapping("/card/{boardId}/{listofBoardId}")
-    public Card createCard(@RequestBody Card card, @PathVariable String boardId, @PathVariable String listofBoardId) {
-        return trelloService.createCard(card, boardId, listofBoardId);
-    }
+//    @PostMapping("/card/{boardId}/{listofBoardId}")
+//    public Card createCard(@RequestBody Card card, @PathVariable String boardId, @PathVariable String listofBoardId) {
+//        return trelloService.createCard(card, boardId, listofBoardId);
+//    }
 
-    @DeleteMapping
-    public void deleteBoard(){
-        trelloService.deleteAll();
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteBoard(@PathVariable String id){
-        trelloService.deleteBoard(id);
-    }
+//    @DeleteMapping
+//    public void deleteBoard(){
+//        trelloService.deleteAll();
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteBoard(@PathVariable String id){
+//        trelloService.deleteBoard(id);
+//    }
 
 }

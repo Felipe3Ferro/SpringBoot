@@ -1,9 +1,9 @@
-package com.example.spring_mvc_mongo_gradle.models;
+package com.example.spring_mvc_mongo_gradle.models.trello.response;
 
 import lombok.Data;
 
 @Data
-public class Card {
+public class ListofBoard {
     private String id;
     private String name;
     private String desc;

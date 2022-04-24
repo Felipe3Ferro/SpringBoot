@@ -1,4 +1,4 @@
-package com.example.spring_mvc_mongo_gradle.models;
+package com.example.spring_mvc_mongo_gradle.models.todo.response;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

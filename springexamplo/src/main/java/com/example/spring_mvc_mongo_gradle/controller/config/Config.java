@@ -8,17 +8,13 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class Config {
 
-  // @Bean
-  // public RestTemplate restTemplate() {
-  //   return new RestTemplate();
-  // }
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplateBuilder()
+                .rootUri("https://api.trello.com")
+//                .errorHandler()
+                .build();
+    }
 
-
-  @Bean 
-  public RestTemplate restTemplate2() {
-    return new RestTemplateBuilder()
-      .rootUri("https://api.trello.com/")
-      .build();
-  }
 
 }

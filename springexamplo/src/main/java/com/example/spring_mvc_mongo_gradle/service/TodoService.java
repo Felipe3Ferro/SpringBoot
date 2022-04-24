@@ -2,7 +2,7 @@
 package com.example.spring_mvc_mongo_gradle.service;
 
 import com.example.spring_mvc_mongo_gradle.exception.notFound.ResourceNotFoundException;
-import com.example.spring_mvc_mongo_gradle.models.Todo;
+import com.example.spring_mvc_mongo_gradle.models.todo.response.Todo;
 import com.example.spring_mvc_mongo_gradle.repositories.TodoRepository;
 import lombok.AllArgsConstructor;
 

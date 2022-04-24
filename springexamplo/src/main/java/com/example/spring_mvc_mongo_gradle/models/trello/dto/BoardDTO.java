@@ -1,4 +1,4 @@
-package com.example.spring_mvc_mongo_gradle.models;
+package com.example.spring_mvc_mongo_gradle.models.trello.dto;
 
 import javax.validation.constraints.NotNull;
 
@@ -15,15 +15,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "boards")
-
-public class Board {
+public class BoardDTO {
     @NotNull
     private String id;
     @NotNull
     private String name;
     private Boolean closed;
     // private String desc;
-    private List<ListofBoard> list;
+    private List<ListofBoardDTO> list;
 
 }

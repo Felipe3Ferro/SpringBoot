@@ -3,7 +3,6 @@ package com.example.spring_mvc_mongo_gradle.controller;
 import lombok.AllArgsConstructor;
 
 
-import org.springframework.http.ResponseCookie;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,7 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import javax.validation.Valid;
 
-import com.example.spring_mvc_mongo_gradle.models.Todo;
+import com.example.spring_mvc_mongo_gradle.models.todo.response.Todo;
 import com.example.spring_mvc_mongo_gradle.service.TodoService;
 
 import java.util.List;
