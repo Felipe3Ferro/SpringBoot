@@ -41,12 +41,15 @@ public class TrelloIntegration {
         return Arrays.asList(responseEntity);
     }
 
-    public Card getCard(String boardId) {
+    public List<Card> getCard(String listId) {
         UriComponents uri = UriComponentsBuilder.newInstance()
-                .path("/1/boards/" + boardId + "/lists")
+                .path("/1/lists/" + listId + "/cards")
                 .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
                 .queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3")
                 .build();
-        return
+
+
+        Card[] responseEntity = template.getForObject(uri.toString(), Card[].class);
+        return Arrays.asList(responseEntity);
     }
 }

@@ -9,5 +9,4 @@ public interface TrelloRepository extends MongoRepository<BoardDTO, String> {
     @Override
     public void delete(BoardDTO todo);
 
-    // void findByBoard();
 }

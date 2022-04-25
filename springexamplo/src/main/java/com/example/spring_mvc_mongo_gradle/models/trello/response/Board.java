@@ -21,6 +21,5 @@ public class Board {
     private String name;
     @JsonProperty("closed")
     private Boolean closed;
-    // private String desc;
 
 }

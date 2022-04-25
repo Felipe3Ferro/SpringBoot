@@ -16,12 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardDTO {
-    @NotNull
     private String id;
-    @NotNull
     private String name;
     private Boolean closed;
-    // private String desc;
     private List<ListofBoardDTO> list;
 
 }

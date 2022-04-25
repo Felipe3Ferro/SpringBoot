@@ -5,6 +5,7 @@ import com.example.spring_mvc_mongo_gradle.integration.TrelloIntegration;
 import com.example.spring_mvc_mongo_gradle.models.trello.dto.BoardDTO;
 import com.example.spring_mvc_mongo_gradle.models.trello.dto.CardDTO;
 import com.example.spring_mvc_mongo_gradle.models.trello.dto.ListofBoardDTO;
+import com.example.spring_mvc_mongo_gradle.repositories.TrelloRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,7 @@ public class FacadeTrello {
 
        boardDTO.stream()
                .forEach(varBoardDTO ->
-                       varBoardDTO.setList(getListOfBoardDTOByBoardId(varBoardDTO.getId())));          );
+                       varBoardDTO.setList(getListOfBoardDTOByBoardId(varBoardDTO.getId())));
        return boardDTO;
     }
 
@@ -34,9 +35,12 @@ public class FacadeTrello {
         listofBoardDTO.stream()
                 .forEach(varListofBoardDTO ->
                         varListofBoardDTO.setCards(getCardByBoardId(varListofBoardDTO.getId())));
+
+        return listofBoardDTO;
     }
 
     private List<CardDTO> getCardByBoardId(String boardId) {
-        var card = toCardDTO(trelloIntegration.getCard(boardId));
+
+        return toCardDTO(trelloIntegration.getCard(boardId));
     }
 }
