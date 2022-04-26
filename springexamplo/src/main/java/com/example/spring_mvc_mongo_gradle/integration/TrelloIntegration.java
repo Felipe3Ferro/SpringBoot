@@ -1,9 +1,13 @@
 package com.example.spring_mvc_mongo_gradle.integration;
 
+import com.example.spring_mvc_mongo_gradle.models.trello.dto.BoardDTO;
 import com.example.spring_mvc_mongo_gradle.models.trello.dto.ListofBoardDTO;
-import com.example.spring_mvc_mongo_gradle.models.trello.response.Board;
-import com.example.spring_mvc_mongo_gradle.models.trello.response.Card;
-import com.example.spring_mvc_mongo_gradle.models.trello.response.ListofBoard;
+import com.example.spring_mvc_mongo_gradle.models.trello.request.BoardRequest;
+import com.example.spring_mvc_mongo_gradle.models.trello.request.CardRequest;
+import com.example.spring_mvc_mongo_gradle.models.trello.request.ListofBoardRequest;
+import com.example.spring_mvc_mongo_gradle.models.trello.response.BoardResponse;
+import com.example.spring_mvc_mongo_gradle.models.trello.response.CardResponse;
+import com.example.spring_mvc_mongo_gradle.models.trello.response.ListofBoardResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -19,29 +23,29 @@ public class TrelloIntegration {
 
     private final RestTemplate template;
 
-    public List<Board> getBoard(){
+    public List<BoardResponse> getBoard(){
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .path("/1/members/me/boards")
                 .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
                 .queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3")
                 .build();
 
-        Board[] responseEntity = template.getForObject(uri.toString(), Board[].class);
+        BoardResponse[] responseEntity = template.getForObject(uri.toString(), BoardResponse[].class);
         return Arrays.asList(responseEntity);
     }
 
-    public List<ListofBoard> getListofBoardByBoardId(String boardId) {
+    public List<ListofBoardResponse> getListofBoardByBoardId(String boardId) {
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .path("/1/boards/" + boardId + "/lists")
                 .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
                 .queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3")
                 .build();
 
-        ListofBoard[] responseEntity = template.getForObject(uri.toString(), ListofBoard[].class);
+        ListofBoardResponse[] responseEntity = template.getForObject(uri.toString(), ListofBoardResponse[].class);
         return Arrays.asList(responseEntity);
     }
 
-    public List<Card> getCard(String listId) {
+    public List<CardResponse> getCard(String listId) {
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .path("/1/lists/" + listId + "/cards")
                 .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
@@ -49,7 +53,48 @@ public class TrelloIntegration {
                 .build();
 
 
-        Card[] responseEntity = template.getForObject(uri.toString(), Card[].class);
+        CardResponse[] responseEntity = template.getForObject(uri.toString(), CardResponse[].class);
         return Arrays.asList(responseEntity);
+    }
+
+    public void deleteBoard(String id) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .path("/1/boards/" + id )
+                .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
+                .queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3")
+                .build();
+
+        template.delete(uri.toString());
+    }
+
+    public BoardResponse createBoard(BoardRequest board) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .path("/1/boards/")
+                .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
+                .queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3")
+                .build();
+
+       return template.postForObject(uri.toString(), board, BoardResponse.class);
+    }
+
+    public ListofBoardResponse createList(String id, ListofBoardRequest listofBoardRequest) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .path("/1/boards/"+ id +"/lists")
+                .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
+                .queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3")
+                .build();
+
+        return template.postForObject(uri.toString(), listofBoardRequest, ListofBoardResponse.class);
+    }
+
+    public CardResponse createCard(CardRequest card) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .path("/1/cards")
+                .queryParam("key", "4d22d21f5c6e14648a954f215c23a55f")
+                .queryParam("token", "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3")
+                .build();
+
+        return template.postForObject(uri.toString(), card, CardResponse.class);
+
     }
 }

@@ -5,16 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.NotNull;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Board {
+public class BoardResponse {
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")
