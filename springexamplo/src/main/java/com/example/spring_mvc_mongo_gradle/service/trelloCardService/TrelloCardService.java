@@ -1,7 +1,7 @@
 package com.example.spring_mvc_mongo_gradle.service.trelloCardService;
 
 import com.example.spring_mvc_mongo_gradle.integration.TrelloCardIntegration;
-import com.example.spring_mvc_mongo_gradle.models.trello.dto.CardDTO;
+import com.example.spring_mvc_mongo_gradle.models.trello.dto.BoardDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,15 @@ public class TrelloCardService {
 
     private final TrelloCardIntegration trelloCardIntegration;
 
-    public List<CardDTO> getCard(String listId) {
-        return toCardDTO(trelloCardIntegration.getCard(listId));
+    public void PopulateCard(List<BoardDTO> boardDTOS) {
+
+        boardDTOS.forEach(
+                BoardDTOValue -> BoardDTOValue.getList().forEach(
+                        ListDTOValue -> ListDTOValue.setCards(
+                                toCardDTO(trelloCardIntegration.getCard(ListDTOValue.getId()))
+                        )
+                )
+        );
+
     }
 }

@@ -2,14 +2,17 @@ package com.example.spring_mvc_mongo_gradle.mapper;
 
 import com.example.spring_mvc_mongo_gradle.models.trello.dto.BoardDTO;
 import com.example.spring_mvc_mongo_gradle.models.trello.dto.CardDTO;
-import com.example.spring_mvc_mongo_gradle.models.trello.dto.ListofBoardDTO;
+import com.example.spring_mvc_mongo_gradle.models.trello.dto.ListDTO;
 import com.example.spring_mvc_mongo_gradle.models.trello.request.BoardRequest;
+import com.example.spring_mvc_mongo_gradle.models.trello.request.ListRequest;
 import com.example.spring_mvc_mongo_gradle.models.trello.response.BoardResponse;
 import com.example.spring_mvc_mongo_gradle.models.trello.response.CardResponse;
 import com.example.spring_mvc_mongo_gradle.models.trello.response.ListofBoardResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.example.spring_mvc_mongo_gradle.mapper.ListOfBoardDTOMapper.toListofBoardDTO;
 
 public class BoardMapper {
 
@@ -24,10 +27,10 @@ public class BoardMapper {
                ).collect(Collectors.toList());
     }
 
-    public static List<ListofBoardDTO> toListofBoardDTOList(List<ListofBoardResponse> listOfBoardResponse){
+    public static List<ListDTO> toListofBoardDTOList(List<ListofBoardResponse> listOfBoardResponse){
         return listOfBoardResponse.stream()
                 .map(varListOfBoardValueResponse ->
-                        ListofBoardDTO.builder()
+                        ListDTO.builder()
                                 .id(varListOfBoardValueResponse.getId())
                                 .name(varListOfBoardValueResponse.getName())
                                 .build()
@@ -56,10 +59,18 @@ public class BoardMapper {
 
     public static BoardDTO toBoardDTO(BoardRequest board){
         return BoardDTO.builder()
-                .id(board.getId())
                 .name(board.getName())
                 .closed(board.getClosed())
+                .list(toListDTO(board.getList()))
                 .build();
     }
 
+    public static List<ListDTO> toListDTO(List<ListRequest> listRequest){
+        return listRequest.stream()
+                .map(varListValue ->
+                        ListDTO.builder()
+                                .name(varListValue.getName())
+                                .build()
+                ).collect(Collectors.toList());
+    }
 }

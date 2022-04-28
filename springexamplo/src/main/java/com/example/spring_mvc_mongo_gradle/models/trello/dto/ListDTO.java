@@ -1,4 +1,4 @@
-package com.example.spring_mvc_mongo_gradle.models.trello.request;
+package com.example.spring_mvc_mongo_gradle.models.trello.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListofBoardRequest {
+public class ListDTO {
     private String id;
     private String name;
     private String desc;
+    private List<CardDTO> cards;
 }

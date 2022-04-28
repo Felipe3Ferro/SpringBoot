@@ -1,30 +1,40 @@
 package com.example.spring_mvc_mongo_gradle.service.trelloBoardService.facade;
 
-
-import com.example.spring_mvc_mongo_gradle.integration.TrelloBoardIntegration;
-import com.example.spring_mvc_mongo_gradle.models.trello.dto.CardDTO;
-import com.example.spring_mvc_mongo_gradle.models.trello.dto.ListofBoardDTO;
-import com.example.spring_mvc_mongo_gradle.service.trelloCardService.facade.FacadeTrelloCardService;
+import com.example.spring_mvc_mongo_gradle.models.trello.dto.BoardDTO;
+import com.example.spring_mvc_mongo_gradle.models.trello.request.BoardRequest;
+import com.example.spring_mvc_mongo_gradle.service.trelloBoardService.TrelloBoardService;
 import com.example.spring_mvc_mongo_gradle.service.trelloListService.facade.FacadeTrelloListService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static com.example.spring_mvc_mongo_gradle.mapper.BoardMapper.toBoardDTO;
+import static com.example.spring_mvc_mongo_gradle.mapper.ListOfBoardDTOMapper.toListofBoardDTO;
+
 @Component
 @AllArgsConstructor
 public class FacadeTrelloBoardService {
 
+    private final TrelloBoardService trelloBoardService;
     private final FacadeTrelloListService facadeTrelloListService;
-//    private final FacadeTrelloCardService facadeTrelloCardService;
 
-    public List<ListofBoardDTO> ListOfBoardDTOByBoardId(String boardId) {
-        return facadeTrelloListService.ListOfBoardDTOByBoardId(boardId);
+    public List<BoardDTO> getBoard(){
+        var boardDTOS = trelloBoardService.getBoard();
+        facadeTrelloListService.PopulateBoardList(boardDTOS);
+        return boardDTOS;
     }
 
-//    public void deleteBoard(String id) {
-//        trelloBoardIntegration.deleteBoard(id);
-//    }
+    public BoardDTO createBoard(BoardRequest boardRequest){
+        var boardDTO = trelloBoardService.createBoard(boardRequest);
+        facadeTrelloListService.CreateList(boardDTO.getId(), boardRequest);
+        return boardDTO;
+
+    }
+
+    public void deleteBoard(String id) {
+        trelloBoardService.deleteBoard(id);
+    }
 //
 //    public BoardDTO createBoard(BoardRequest board) {
 //        var boardDTO = toBoardDTO(
