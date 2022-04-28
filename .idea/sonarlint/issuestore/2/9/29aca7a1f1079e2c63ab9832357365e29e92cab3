@@ -1,0 +1,24 @@
+
+V	java:S125"<This block of commented-out lines of code should be removed.(å³·şÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(€·¹…
+V	java:S125!"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+A
+java:S1602E",Remove useless curly braces around statement(ÅÊı
+w
+java:S1192)"aDefine a constant instead of duplicating this literal "4d22d21f5c6e14648a954f215c23a55f" 4 times.(µ‹¯ï
+j
+java:S1192'"ODefine a constant instead of duplicating this literal "api.trello.com" 4 times.(ãÙ‹İùÿÿÿÿ
+
+java:S1192*"Define a constant instead of duplicating this literal "348302ac70e0e10c33a0d89ebaee4194609f992f422c13bb30d70531718efba3" 4 times.(šõÓ´úÿÿÿÿ
+\
+java:S1192&"FDefine a constant instead of duplicating this literal "https" 4 times.(÷ı¥«
+a
+java:S1192*"FDefine a constant instead of duplicating this literal "token" 4 times.(šõÓ´úÿÿÿÿ
+s
+java:S1488]"]Immediately return this expression instead of assigning it to the temporary variable "cards".(¼ïÛœ
+\
+java:S2259."AA "NullPointerException" could be thrown; "aux" is nullable here.(ÄÈ‡Äøÿÿÿÿ
+e
+java:S3655{"JCall "board.isPresent()" or "!board.isEmpty()" before accessing the value.(»»òÿÿÿÿÿ
+k
+java:S3655n"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(‚¶Ğ²ıÿÿÿÿ
