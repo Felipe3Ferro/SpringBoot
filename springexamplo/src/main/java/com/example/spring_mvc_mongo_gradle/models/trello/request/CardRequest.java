@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CardRequest {
+    private String id;
     private String idList;
     private String name;
     private String desc;

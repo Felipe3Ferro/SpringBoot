@@ -27,7 +27,8 @@ public class FacadeTrelloBoardService {
 
     public BoardDTO createBoard(BoardRequest boardRequest){
         var boardDTO = trelloBoardService.createBoard(boardRequest);
-        facadeTrelloListService.CreateList(boardDTO.getId(), boardRequest);
+        var listDTO = facadeTrelloListService.CreateList(boardDTO.getId(), boardRequest);
+        trelloBoardService.saveListOnBoard(boardDTO,listDTO);
         return boardDTO;
 
     }

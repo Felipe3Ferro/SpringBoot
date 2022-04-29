@@ -23,7 +23,7 @@ public class FacadeTrelloListService {
         facadeTrelloCardService.PopulateCard(boardDTOS);
     }
 
-    public void CreateList(String boardId, BoardRequest boardRequest){
-        trelloListService.CreateList(boardId, boardRequest);
+    public List<ListDTO> CreateList(String boardId, BoardRequest boardRequest){
+        return trelloListService.CreateList(boardId, boardRequest);
     }
 }

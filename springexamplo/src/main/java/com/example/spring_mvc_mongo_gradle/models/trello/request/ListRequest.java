@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ListRequest {
+    private String id;
     private String name;
     private String desc;
 }

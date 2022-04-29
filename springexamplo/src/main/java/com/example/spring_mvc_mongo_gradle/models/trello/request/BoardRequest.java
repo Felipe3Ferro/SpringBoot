@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardRequest {
+    private String id;
     private Boolean defaultLists = false;
     private String name;
     private Boolean closed;

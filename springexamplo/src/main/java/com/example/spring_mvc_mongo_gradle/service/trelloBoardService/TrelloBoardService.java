@@ -3,6 +3,7 @@ package com.example.spring_mvc_mongo_gradle.service.trelloBoardService;
 import com.example.spring_mvc_mongo_gradle.integration.TrelloBoardIntegration;
 import com.example.spring_mvc_mongo_gradle.mapper.BoardMapper;
 import com.example.spring_mvc_mongo_gradle.models.trello.dto.BoardDTO;
+import com.example.spring_mvc_mongo_gradle.models.trello.dto.ListDTO;
 import com.example.spring_mvc_mongo_gradle.models.trello.request.BoardRequest;
 import com.example.spring_mvc_mongo_gradle.repositories.TrelloRepository;
 import lombok.AllArgsConstructor;
@@ -37,8 +38,12 @@ public class TrelloBoardService {
 //    }
 //
     public BoardDTO createBoard(BoardRequest board) {
-        trelloBoardIntegration.createBoard(board);
-        return repository.save(toBoardDTO(board));
+        return toBoardDTO(trelloBoardIntegration.createBoard(board));
+    }
+
+    public void saveListOnBoard(BoardDTO boardDTO, List<ListDTO> listDTOList) {
+        boardDTO.setList(listDTOList);
+        repository.save(boardDTO);
     }
 
 
