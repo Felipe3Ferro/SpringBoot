@@ -1,4 +1,4 @@
-package com.example.spring_mvc_mongo_gradle;
+package com.example.springmvcmongogradle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
