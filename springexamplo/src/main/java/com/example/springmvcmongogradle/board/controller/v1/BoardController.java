@@ -24,23 +24,23 @@ public class BoardController {
     }
 
     @PostMapping("/board")
-    public BoardResponse createBoard(@RequestBody BoardRequest board) {
-        return boardFacade.createBoard(board);
+    public BoardResponse createBoard(@RequestBody BoardRequest boardRequest) {
+        return boardFacade.createBoard(boardRequest);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/board/{id}")
     public void deleteBoard(@PathVariable String id){
         boardService.deleteBoard(id);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/board")
     public void deleteAllBoard(){
         boardService.deleteAllBoard();
     }
 
-    @PutMapping
-    public BoardResponse alteraBoard(@PathVariable String id){
-        return boardFacade.alteraBoard(id);
+    @PutMapping("/board/{id}")
+    public BoardResponse updateBoard(@PathVariable String id, @RequestBody BoardRequest boardRequest){
+        return boardFacade.updateBoard(id, boardRequest);
     }
 
 }

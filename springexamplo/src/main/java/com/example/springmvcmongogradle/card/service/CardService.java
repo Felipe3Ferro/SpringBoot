@@ -6,14 +6,20 @@ import com.example.springmvcmongogradle.card.models.CardResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CardService {
 
     private final CardIntegration cardIntegration;
 
-    public CardResponse createCard(CardRequest card) {
-       return cardIntegration.createCard(card);
+    public CardResponse createCard(String idList, CardRequest card) {
+       return cardIntegration.createCard(idList,card);
+    }
+
+    public List<CardResponse> getCards() {
+        return null;
     }
 
 }

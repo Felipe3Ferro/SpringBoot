@@ -32,8 +32,8 @@ public class BoardFacade {
         return board;
     }
 
-    public BoardResponse alteraBoard(String id) {
-        var board = boardService.alteraBoard(id);
-        return null;
+    public BoardResponse updateBoard(String id, BoardRequest boardRequest) {
+        var board = boardService.updateBoard(id, boardRequest);
+        return board;
     }
 }

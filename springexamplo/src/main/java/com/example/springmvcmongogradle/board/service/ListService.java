@@ -3,11 +3,14 @@ package com.example.springmvcmongogradle.board.service;
 import com.example.springmvcmongogradle.board.integration.ListIntegration;
 import com.example.springmvcmongogradle.board.models.board.BoardRequest;
 import com.example.springmvcmongogradle.board.models.board.BoardResponse;
+import com.example.springmvcmongogradle.board.models.list.ListRequest;
 import com.example.springmvcmongogradle.board.models.list.ListResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.example.springmvcmongogradle.board.mapper.board.BoardResponseMapper.toBoardResponse;
 
 @Service
 @AllArgsConstructor
@@ -29,4 +32,5 @@ public class ListService {
                 )
                 .toList();
     }
+
 }

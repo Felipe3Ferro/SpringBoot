@@ -19,5 +19,4 @@ public class TaskRequest {
     private String description;
     @NotNull(message = "completed can't be null")
     private Boolean completed;
-    
 }

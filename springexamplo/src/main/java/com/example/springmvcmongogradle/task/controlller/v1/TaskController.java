@@ -28,7 +28,7 @@ public class TaskController {
     @GetMapping()
     @ResponseStatus(OK)
     public List<TaskResponse> getTodo() {
-        return taskService.getTodo();
+        return taskService.getTask();
     }
 
     @GetMapping("/{id}")
@@ -44,7 +44,6 @@ public class TaskController {
                                                 @RequestParam(required = false) Boolean completed) {
         return taskService.getTask(id, description, completed);
     }
-
 
     @DeleteMapping
     @ResponseStatus(NO_CONTENT)

@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Date;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 
 @ControllerAdvice
@@ -56,7 +55,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(BAD_REQUEST)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
     public ErrorDetail handlerBadRequest(Exception e) {
         return ErrorDetail.builder()
                 .timestamp(new Date().getTime())

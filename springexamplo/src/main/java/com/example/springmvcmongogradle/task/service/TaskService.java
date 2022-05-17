@@ -21,11 +21,13 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
+
+
     public TaskResponse createTask(TaskRequest taskRequest) {
         return toTaskResponse(taskRepository.save(toTaskEntity(taskRequest)));
     }
 
-    public List<TaskResponse> getTodo() {
+    public List<TaskResponse> getTask() {
         return taskRepository.findAll().stream()
                 .map(TaskResponseMapper::toTaskResponse)
                 .toList();

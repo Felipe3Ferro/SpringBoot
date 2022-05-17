@@ -56,7 +56,6 @@ public class BoardService {
         boardIntegration.updateBoard(id, boardRequest);
         var boardModel = boardRepository.findById(id).get();
 
-
         boardModel.setName(boardRequest.getName());
         boardModel.setClosed(boardRequest.getClosed());
 
