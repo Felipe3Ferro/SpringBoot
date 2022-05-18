@@ -29,17 +29,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureDataMongo
-@SpringBootTest
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @WebMvcTest(TaskController.class)
 public class TaskControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private TaskRepository taskRepository;
 
     @MockBean
     private TaskService taskService;
@@ -48,15 +42,6 @@ public class TaskControllerTest {
 
     private URI uri = new URI("http://localhost:8080/v1/task");
 
-    @BeforeAll
-    public void setup(){
-
-        taskRepository.save(TaskEntity.builder().id("1").todo("todo1").completed(true).description("description1").build());
-        taskRepository.save(TaskEntity.builder().id("2").todo("todo2").completed(true).description("description2").build());
-        taskRepository.save(TaskEntity.builder().id("3").todo("todo3").completed(true).description("description3").build());
-        taskRepository.save(TaskEntity.builder().id("4").todo("todo4").completed(true).description("description4").build());
-
-    }
 
     private List<TaskResponse> tasksResponse = List.of(TaskResponse.builder()
             .todo("Todo")
@@ -147,10 +132,4 @@ public class TaskControllerTest {
         mockMvc.perform(get(uri + "/" + id))
                 .andExpect(status().isNotFound());
     }
-
-    @Test
-    public void test_getById_successfull() throws Exception {
-        mockMvc.perform(get("/").param("id", "1")).andExpect(status().isOk()).andExpect(content().string("{\"id\":1,\"firstName\":\"James\",\"lastName\":\"Bond\"}"));        ;
-    }
-
 }   
