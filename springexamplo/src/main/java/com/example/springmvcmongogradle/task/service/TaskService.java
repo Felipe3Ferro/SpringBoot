@@ -21,8 +21,6 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
-
-
     public TaskResponse createTask(TaskRequest taskRequest) {
         return toTaskResponse(taskRepository.save(toTaskEntity(taskRequest)));
     }
