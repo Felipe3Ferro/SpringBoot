@@ -15,8 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TaskServiceTest {
@@ -33,17 +32,23 @@ public class TaskServiceTest {
             .description("Description")
             .build());
 
-    private List<TaskResponse> taskResponseListStub = List.of(TaskResponse.builder()
-            .todo("Todo")
-            .completed(false)
-            .description("Description")
-            .build());
+//    private List<TaskResponse> taskResponseListStub = List.of(TaskResponse.builder()
+//            .todo("Todo")
+//            .completed(false)
+//            .description("Description")
+//            .build());
 
-    private TaskEntity taskEntityStub = TaskEntity.builder()
+    private TaskEntity taskEntityResponseStub = TaskEntity.builder()
             .id("1")
             .todo("todo1")
             .description("description1")
             .build();
+
+    private TaskEntity taskEntityRequestStub = TaskEntity.builder()
+            .todo("todo1")
+            .description("description1")
+            .build();
+
 
     private TaskResponse taskResponseStub = TaskResponse.builder()
             .id("1")
@@ -68,7 +73,7 @@ public class TaskServiceTest {
 //        assertThrows(stubExpect,
 //                () -> implFacade.register(null));
 //    }
-
+//
 //    @Test
 //    public void createTask() {
 //        Mockito.when(taskRepository.save(taskEntityRequest))
@@ -79,25 +84,25 @@ public class TaskServiceTest {
 
 
     @Test
-    void TestGetTask_Should_Return_TaskResponseStub() {
+    void testGetTask_Should_Return_TaskResponseStub() {
         Mockito.when(taskRepository.findAll())
                 .thenReturn(taskEntityListStub);
 
-        var actual = taskService.getTask();
-        assertEquals(taskResponseStub, actual);
+        var result = taskService.getTask();
+        assertEquals(taskResponseStub, result);
     }
 
     @Test
-    void TestGetTaskById_ShouldReturn_TaskResponseStub() {
+    void testGetTaskById_ShouldReturn_TaskResponseStub() {
         Mockito.when(taskRepository.findById("1"))
-                .thenReturn(Optional.ofNullable(taskEntityStub));
+                .thenReturn(Optional.ofNullable(taskEntityResponseStub));
 
-        var actual = taskService.getTaskById("1");
-        assertEquals(taskResponseStub, actual);
+        var result = taskService.getTaskById("1");
+        assertEquals(taskResponseStub, result);
     }
 
     @Test
-    void TestGetTaskById_ShouldReturn_NotFoundException() {
+    void testGetTaskById_ShouldReturn_NotFoundException() {
         Mockito.when(taskRepository.findById("2"))
                 .thenThrow(new NotFoundException("id not found"));
 
@@ -108,26 +113,14 @@ public class TaskServiceTest {
     }
 
     @Test
-    void TestPostTask_ShouldReturn_TaskResponse() {
-//        Mockito.when(taskRepository.save(taskEntityStub))
-//                .thenReturn(taskEntityStub);
-//
-//        var actual = taskService.createTask(taskRequestStub);
-//        assertEquals(actual,taskResponseStub);
+    void testPostTask_ShouldReturn_TaskResponse() {
+        Mockito.when(taskRepository.save(taskEntityRequestStub))
+                .thenReturn(taskEntityResponseStub);
+
+        var result = taskService.createTask(taskRequestStub);
+
+        assertNotNull(result);
+        assertEquals(result.getTodo(),taskResponseStub.getTodo());
     }
 
-    @Test
-    void deleteNTask() {
-
-    }
-
-    @Test
-    void testDeleteNTask() {
-
-    }
-
-    @Test
-    void editTodo() {
-
-    }
 }
