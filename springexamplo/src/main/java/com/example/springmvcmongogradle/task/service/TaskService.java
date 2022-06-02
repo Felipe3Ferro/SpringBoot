@@ -22,7 +22,8 @@ public class TaskService {
     private final TaskRepository taskRepository;
 
     public TaskResponse createTask(TaskRequest taskRequest) {
-        return toTaskResponse(taskRepository.save(toTaskEntity(taskRequest)));
+        var taskEntity = toTaskEntity(taskRequest);
+        return toTaskResponse(taskRepository.save(taskEntity));
     }
 
     public List<TaskResponse> getTask() {

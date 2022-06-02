@@ -32,11 +32,11 @@ public class TaskServiceTest {
             .description("Description")
             .build());
 
-//    private List<TaskResponse> taskResponseListStub = List.of(TaskResponse.builder()
-//            .todo("Todo")
-//            .completed(false)
-//            .description("Description")
-//            .build());
+    private List<TaskResponse> taskResponseListStub = List.of(TaskResponse.builder()
+            .todo("Todo")
+            .completed(false)
+            .description("Description")
+            .build());
 
     private TaskEntity taskEntityResponseStub = TaskEntity.builder()
             .id("1")
@@ -89,7 +89,7 @@ public class TaskServiceTest {
                 .thenReturn(taskEntityListStub);
 
         var result = taskService.getTask();
-        assertEquals(taskResponseStub, result);
+        assertEquals(taskResponseListStub, result);
     }
 
     @Test
@@ -120,6 +120,17 @@ public class TaskServiceTest {
         var result = taskService.createTask(taskRequestStub);
 
         assertNotNull(result);
+        assertEquals(result.getTodo(),taskResponseStub.getTodo());
+    }
+
+
+
+    @Test
+    void test() {
+        Mockito.when(taskRepository.save(taskEntityRequestStub)).thenReturn(taskEntityResponseStub);
+
+        var result = taskService.createTask(taskRequestStub);
+
         assertEquals(result.getTodo(),taskResponseStub.getTodo());
     }
 
