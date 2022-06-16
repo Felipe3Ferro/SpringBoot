@@ -18,8 +18,8 @@ public class CardController {
     private final CardRepository cardRepository;
 
     @PostMapping("/card")
-    public CardResponse createCard(@PathVariable String idList, @RequestBody CardRequest card){
-        return cardService.createCard(idList, card);
+    public CardResponse createCard(@RequestBody CardRequest card){
+        return cardService.createCard(card);
     }
 
     @GetMapping("/card")

@@ -1,5 +1,7 @@
 package com.example.springmvcmongogradle.acommons;
 
+import com.example.springmvcmongogradle.acommons.exception.ErrorDetail;
+import com.example.springmvcmongogradle.acommons.exception.ErrorHandler;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +14,7 @@ public class RestTemplateConfig {
     public RestTemplate restTemplate() {
         return new RestTemplateBuilder()
                 .rootUri("https://api.trello.com")
-//                .errorHandler()
+                .errorHandler(new ErrorHandler())
                 .build();
     }
 

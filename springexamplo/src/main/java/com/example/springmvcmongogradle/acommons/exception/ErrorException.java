@@ -1,4 +1,4 @@
-package com.example.springmvcmongogradle.task.exception;
+package com.example.springmvcmongogradle.acommons.exception;
 
 public class ErrorException extends RuntimeException {
     public ErrorException(String message) {

@@ -1,4 +1,4 @@
-package com.example.springmvcmongogradle.task.exception;
+package com.example.springmvcmongogradle.acommons.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -14,8 +14,8 @@ public class CardService {
 
     private final CardIntegration cardIntegration;
 
-    public CardResponse createCard(String idList, CardRequest card) {
-       return cardIntegration.createCard(idList,card);
+    public CardResponse createCard(CardRequest card) {
+       return cardIntegration.createCard(card.getIdList(),card);
     }
 
     public List<CardResponse> getCards() {

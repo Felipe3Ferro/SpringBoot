@@ -4,9 +4,6 @@ import com.example.springmvcmongogradle.board.integration.BoardIntegration;
 import com.example.springmvcmongogradle.board.models.board.BoardRequest;
 import com.example.springmvcmongogradle.board.models.board.BoardResponse;
 import com.example.springmvcmongogradle.board.repository.BoardRepository;
-import com.example.springmvcmongogradle.task.exception.NotFoundException;
-import com.example.springmvcmongogradle.task.mapper.TaskResponseMapper;
-import com.example.springmvcmongogradle.task.models.TaskResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

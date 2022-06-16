@@ -1,6 +1,6 @@
 package com.example.springmvcmongogradle.task.service;
 
-import com.example.springmvcmongogradle.task.exception.NotFoundException;
+import com.example.springmvcmongogradle.acommons.exception.NotFoundException;
 import com.example.springmvcmongogradle.task.mapper.TaskResponseMapper;
 import com.example.springmvcmongogradle.task.models.TaskEntity;
 import com.example.springmvcmongogradle.task.models.TaskRequest;

@@ -1,4 +1,4 @@
-package com.example.springmvcmongogradle.task.exception;
+package com.example.springmvcmongogradle.acommons.exception;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,7 +22,7 @@ public class RestExceptionHandler {
         return ErrorDetail.builder()
                 .timestamp(new Date().getTime())
                 .status(NOT_FOUND.value())
-                .title("Resource Not Found")
+                .title("Resource Not Found Not Found Exception")
                 .detail(e.getMessage())
                 .developerMessage(NOT_FOUND.name())
 
@@ -36,7 +36,7 @@ public class RestExceptionHandler {
         return ErrorDetail.builder()
                 .timestamp(new Date().getTime())
                 .status(NOT_FOUND.value())
-                .title("Resource Not Found")
+                .title("Resource Not Found Error Exception")
                 .detail(e.getMessage())
                 .developerMessage(e.getClass().getName())
                 .build();

@@ -29,6 +29,7 @@ dependencies {
     implementation 'org.thymeleaf:thymeleaf:3.0.14.RELEASE'
     implementation 'org.thymeleaf:thymeleaf-spring5:3.0.14.RELEASE'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo'
 
